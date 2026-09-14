@@ -1,0 +1,131 @@
+<! -- The homepage. Will contain the form to create blog posts and display
+all existing posts. -->
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content=" width=device-width , initial-scale=1.0">
+
+
+    <title> Blog </title>
+
+
+    <!-- I connect my CSS file here -->
+    <link rel= "stylesheet" href ="/css/style.css" >
+
+
+</head>
+
+<body>
+
+    <header>
+        <h1>Welcome to The Blog</h1>
+        <p> Share Your thoughts and ideas here.</p>
+
+
+    </header>
+
+
+    <main>
+
+        <!-- I use this form to create a new blog post -->
+        <section>
+            <h2>Create a New Post</h2>
+
+            <form action="/posts" method="POST">
+
+                <!-- I ask for the name of the person writing the post -->
+                <label for="author">Your Name:</label>
+                <input type="text" id="author" name="author" required>
+
+                <br><br>
+
+                <!-- I ask for the title of the blog -->
+                <label for="title">Blog Title:</label>
+                <input type="text" id="title" name="title" required>
+
+                <br><br>
+
+                <!-- I use a textarea for the main blog content -->
+                <label for="content">Your Blog:</label>
+                <br>
+                <textarea id="content" name="content" rows="6" required></textarea>
+
+                <br><br>
+
+                <button type="submit">Create Post</button>
+            </form>
+        </section>
+
+
+        <!-- I display the blog posts I have created -->
+
+
+        <section>
+
+
+
+            <h2>Blog POsts</h2>
+
+
+
+            <% if (posts.length === 0) { %>
+
+                <!-- I show this message if there are no posts -->
+
+
+
+
+                <p>I haven't created any blog posts yet.</p>
+
+            <%  } else { %>
+
+
+
+                <!-- I go through each post and display its information -->
+                <% posts.forEach(post => { %>
+
+                    <article>
+                        <h3> <%=   post.title %> </h3 >
+
+
+
+                        <p>By  <%=  post.author %></p >
+                        <p>Created: <%=    post.date %></p>
+
+                        <p> <%= post.content %></p>
+
+                        <!-- added a link to edit the current post -->
+
+
+
+                        <a href="/posts/edit/<%= post.id %>">Edit</a>
+
+                        <!-- I use this form to delete the current post -->
+                        <form action="/posts/delete/<%= post.id %>" method="POST" style="display: inline;">
+                            <button type="submit">Delete</button>
+                        </form>
+
+                    </article>
+
+                    <hr>
+
+                <% }); %>
+
+            <% } %>
+
+        </section>
+
+    </main>
+
+</body>
+
+
+
+</html>

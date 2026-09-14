@@ -1,0 +1,58 @@
+<! -- The edit page. Contains a form filled with an existing 
+posts information so you can modify and save it. -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Edit Post</title>
+
+    <!-- I connect my CSS file to this page -->
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>Edit My Blog Post</h1>
+        <p>I can change the information in my post here.</p>
+    </header>
+
+
+    <main>
+
+        <!-- I send the updated information back to my server -->
+        <form action="/posts/edit/<%= post.id %>" method="POST">
+
+            <!-- I let the user change the author's name -->
+            <label for="author">Your Name:</label>
+            <input type="text" id="author" name="author"
+                value="<%= post.author %>" required>
+
+
+            <!-- I let the user change the blog title -->
+            <label for="title">Blog Title:</label>
+            <input type="text" id="title" name="title"
+                value="<%= post.title %>" required>
+
+            <!-- I let the user change the blog content -->
+            <label for="content">Your Blog:</label>
+            <textarea id="content" name="content" rows="8" required><%= post.content %></textarea>
+
+            <br>
+
+            <button type="submit">Save Changes</button>
+
+        </form>
+
+
+        <!-- I add a way to return to the homepage -->
+        <p><a href="/">Back to Home</a></p>
+
+    </main>
+
+</body>
+</html>
