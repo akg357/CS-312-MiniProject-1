@@ -71,7 +71,7 @@ app.post("/posts", (req, res) =>
 
         content: req.body.content,
 
-        date: new Date().toLocaleDateString()
+        date: new Date().toLocaleString()
 
     };
 
